@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    
     @articles = @user.articles
   end
 
@@ -66,7 +65,7 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-    session[:user_id] = nil
+    session[:user_id] = nil if @user == current_user
     flash[:notice] = "Account and all associated articles successfully deleted"
     redirect_to articles_path
   end
